@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import MealItem from "./MealItem";
 
 const Meals = () => {
   const [data, setData] = useState([]);
@@ -17,8 +18,9 @@ const Meals = () => {
 
   return (
     <ul id="meals">
-      <h2>Create list of meals</h2>
-      {}
+      {data.map((meal) => {
+        return <MealItem key={meal.id} meal={meal} />;
+      })}
     </ul>
   );
 };
