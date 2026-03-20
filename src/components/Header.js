@@ -1,17 +1,16 @@
-import logo from '../assets/logo.jpg'
+import Button from "./Button";
 
 const Header = () => {
-    return (
-        <header id="main-header">
-            <div id="title">
-                <img src={logo}/>
-                <h1>React Food Order App</h1>
-            </div>
-            <nav>
-            <button>Cart (0)</button>
-            </nav>
-        </header>
-    )
-}
+  return (
+    <header id="main-header">
+      <div id="title">
+        <h1>Meals App</h1>
+      </div>
+      <Button textOnly onClick={() => console.log("Cart clicked")}>
+        Cart
+      </Button>
+    </header>
+  );
+};
 
-export default Header
+export default Header;

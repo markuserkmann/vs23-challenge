@@ -1,3 +1,5 @@
+import Button from "./Button";
+
 const MealItem = (props) => {
   return (
     <li className="meal-item">
@@ -14,11 +16,15 @@ const MealItem = (props) => {
               currency: "EUR",
             }).format(Number(props.meal.price))}
           </p>
-          <p className="meal-item-description">{props.meal.description}</p>
+          <p className="meal-item-description">
+            {props.meal.description}
+          </p>
         </div>
-        <p className="meal-item-actions">
-          <button className="button">Add to Cart</button>
-        </p>
+        <div className="meal-item-actions">
+          <Button onClick={() => console.log("Add to cart")}>
+            Add to Cart
+          </Button>
+        </div>
       </article>
     </li>
   );
