@@ -3,8 +3,12 @@ import Modal from "./UI/Modal";
 import Button from "./Button";
 import { CartContext } from "../store/cartContext";
 
-const Cart = ({ open, onClose }) => {
+const Cart = ({ open, onClose, onCheckout }) => {
   const cartContext = useContext(CartContext);
+
+  if (cartContext.items.length === 0) {
+    return null;
+  }
 
   const cartTotal = cartContext.items.reduce(
     (total, item) => total + item.quantity * Number(item.price),
@@ -12,14 +16,14 @@ const Cart = ({ open, onClose }) => {
   );
 
   return (
-    <Modal open={open}>
+    <Modal open={open} onClose={onClose}>
       <div className="cart">
         <h2>Your Cart</h2>
         <ul>
           {cartContext.items.map((item) => (
             <li key={item.id} className="cart-item">
               <p>
-                {item.name} <b>x {item.quantity}</b>
+                {item.name} <b> {item.quantity}</b>
               </p>
               <p>
                 {Intl.NumberFormat("de-DE", {
@@ -40,6 +44,7 @@ const Cart = ({ open, onClose }) => {
           <Button textOnly onClick={onClose}>
             Close
           </Button>
+          <Button onClick={onCheckout}>Checkout</Button>
         </p>
       </div>
     </Modal>
